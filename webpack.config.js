@@ -10,7 +10,7 @@ const serve = process.env.SERVE;
 module.exports = {
   mode: buildMode(env),
   target: makeTarget(env),
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   devtool: "source-map",
   plugins: makePlugins({ env, serve }),
   module: {
@@ -18,6 +18,9 @@ module.exports = {
   },
   devServer: {
     hot: true,
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
