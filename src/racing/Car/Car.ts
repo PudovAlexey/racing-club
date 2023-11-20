@@ -1,22 +1,25 @@
 import * as THREE from "three";
 import { Wheel } from "./wheel/Wheel";
+import { Bottom } from "./bottom/Bottom";
 
 class Car {
   constructor() {}
 
   renderTires() {
-    const group = new THREE.Group()
+    const group = new THREE.Group();
        const frontLeftWheel = new Wheel({
-        position: {x: 0, y: 0, z: 0}
+        position: {x: 3, y: 0, z: 0}
        });
+       
        const frontRightWheel = new Wheel({
-        position: {x: 0, y: 0, z: 0}
+        position: {x: 3, y: 0, z: 2}
        });
+
        const backLeftWheel = new Wheel({
         position: {x: 0, y: 0, z: 0}
        });
        const backRightWheel = new Wheel({
-        position: {x: 0, y: 0, z: 0}
+        position: {x: 0, y: 0, z: 2}
        });
 
     group.add(frontLeftWheel.render());
@@ -27,10 +30,23 @@ class Car {
     return group;
   }
 
-  render() {
-   const wheelsGroup = this.renderTires(); 
+    renderBottom() {
+      const bottom = new Bottom();
 
-   return wheelsGroup
+      return bottom.render();
+    }
+
+  render() {
+    const group = new THREE.Group();
+   const wheelsGroup = this.renderTires();
+   const bottom = this.renderBottom();
+
+   group.add(wheelsGroup);
+   group.add(bottom);
+
+
+
+   return group;
   }
 }
 
