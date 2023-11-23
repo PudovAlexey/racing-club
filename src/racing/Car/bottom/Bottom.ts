@@ -6,7 +6,7 @@ class Bottom {
     cube = null;
     constructor() {
         this.geometry = new THREE.BoxGeometry( 3, 0.05, 1.9 ); 
-        this.material = new THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
+        this.material = new THREE.MeshBasicMaterial( {color: 'gray'} ); 
         this.cube = new THREE.Mesh( this.geometry, this.material ); 
     }
 
