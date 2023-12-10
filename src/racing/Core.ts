@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { Wheel } from "./Car/wheel/Wheel";
 import { OrbitControls } from "three/examples/jsm/Addons";
 import { Car } from "./Car/Car";
 
@@ -27,17 +26,37 @@ class Core {
     this.camera.position.z = 5;
     document.body.appendChild(this.renderer.domElement);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+    // this.renderer.setClearColor( 0xffffff );
     this.animate();
+
+    const ambientLight = new THREE.AmbientLight( 0xffffff );
+    this.scene.add( ambientLight );
+
+    const pointLight = new THREE.PointLight( 0xffffff, 15 );
+    this.camera.add( pointLight );
+    this.scene.add( this.camera );
   }
 
   spawnWheel() {
+    // const loader = new GLTFLoader();
+    // console.log(loader, 'loadr')
+    // loader.load(WHEEL, async (gltf) => {
+    //   const model = gltf.scene;
+
+    //   // wait until the model can be added to the scene without blocking due to shader compilation
+
+    //   await this.renderer.compileAsync( model, this.camera, this.scene );
+
+    //   this.scene.add( model );
+    // });
+    
     const car = new Car();
     this.scene.add(car.render());
-    // const wheel = new Wheel();
+    const wheel = new Wheel();
+    const wheelRender = wheel.render();
 
-    // const wheelRender = wheel.render();
+    this.scene.add(wheelRender);
 
-    // this.scene.add(wheelRender);
   }
 
   animate() {

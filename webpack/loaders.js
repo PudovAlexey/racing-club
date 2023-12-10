@@ -2,8 +2,16 @@ function makeLoaders(env) {
   return [
     { test: /\.(html)$/, use: ["html-loader"] },
     {
-      test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
-      type: env === "production" ? "asset" : "asset/resource",
+      test: /\.(png|jpe?g|gif|svg|webp|ico|JPG)$/i,
+      type: env === "production" ? "src/assets" : "src/assets",
+    },
+    {
+      test: /\.(png|jpe?g|gif|glb|gltf|bin)$/i,
+      loader: "file-loader",
+      options: {
+          publicPath: "./",
+          name: "[name].[ext]"
+      },
     },
     {
       test: /\.(woff2?|eot|ttf|otf)$/i,
@@ -29,6 +37,12 @@ function makeLoaders(env) {
         },
       },
     },
+    {
+      test: /\.obj|\.tml|\.JPG$/,
+      use: {
+        loader: "webpack-obj-loader"
+      }
+    }
   ];
 }
 

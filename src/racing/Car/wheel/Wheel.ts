@@ -1,6 +1,8 @@
 import * as THREE from "three";
-import { Tire } from "./tire/Tire";
-import { Disc } from "./disc/disc";
+import "../../../assets/wheels/BMWWHeel/BMWWheel.bin";
+import WHEEL from "../../../assets/wheels/BMWWHeel/BMWWheel.gltf";
+
+import  {GLTFLoader}  from "three/examples/jsm/loaders/GLTFLoader";
 
 class Wheel {
   group = new THREE.Group();
@@ -11,15 +13,19 @@ class Wheel {
   }
 
   render() {
-    const tire = new Tire();
-    const disc = new Disc();
+    const loader = new GLTFLoader();
 
-    const renderTire = tire.render();
-    const renderDisc = disc.render();
+    loader.load(WHEEL, async (gltf) => {
+      const model = gltf.scene;
+
+      // await this.renderer.compileAsync( model, this.camera, this.scene );
+
+      this.group.add(model);
+
+      console.log(model, 'model');
+    });
 
     
-    this.group.add(renderTire);
-    this.group.add(renderDisc);
 
     return this.group;
   }
