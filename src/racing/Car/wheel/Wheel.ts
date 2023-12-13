@@ -1,12 +1,11 @@
 import * as THREE from "three";
-import "../../../assets/wheels/BMWWHeel/BMWWheel.bin";
-import WHEEL from "../../../assets/wheels/BMWWHeel/BMWWheel.gltf";
-
-import  {GLTFLoader}  from "three/examples/jsm/loaders/GLTFLoader";
+import "../../../assets/bmw/wheel/BMWWheel.bin";
+import WHEEL from "../../../assets/bmw/wheel/BMWWheel.gltf";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 class Wheel {
   group = new THREE.Group();
-  constructor({position}) {
+  constructor({ position }) {
     this.group.position.x = position.x;
     this.group.position.y = position.y;
     this.group.position.z = position.z;
@@ -21,11 +20,7 @@ class Wheel {
       // await this.renderer.compileAsync( model, this.camera, this.scene );
 
       this.group.add(model);
-
-      console.log(model, 'model');
     });
-
-    
 
     return this.group;
   }

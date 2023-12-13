@@ -7,8 +7,6 @@ function App() {
   useEffect(() => {
     core.onInit();
 
-    core.spawnWheel();
-
     return () => {
       core.onExit();
     };

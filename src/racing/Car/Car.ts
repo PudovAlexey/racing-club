@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { Wheel } from "./wheel/Wheel";
-import { Bottom } from "./bottom/Bottom";
+import { CarBody } from "./body/Body";
 
 class Car {
   constructor() {}
@@ -30,19 +30,19 @@ class Car {
     return group;
   }
 
-    renderBottom() {
-      const bottom = new Bottom();
+    renderBody() {
+      const body = new CarBody();
 
-      return bottom.render();
+      return body.render();
     }
 
   render() {
     const group = new THREE.Group();
    const wheelsGroup = this.renderTires();
-   const bottom = this.renderBottom();
+   const body = this.renderBody();
 
    group.add(wheelsGroup);
-   group.add(bottom);
+   group.add(body);
 
 
 

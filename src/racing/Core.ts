@@ -35,27 +35,12 @@ class Core {
     const pointLight = new THREE.PointLight( 0xffffff, 15 );
     this.camera.add( pointLight );
     this.scene.add( this.camera );
+    this.spawnCar();
   }
 
-  spawnWheel() {
-    // const loader = new GLTFLoader();
-    // console.log(loader, 'loadr')
-    // loader.load(WHEEL, async (gltf) => {
-    //   const model = gltf.scene;
-
-    //   // wait until the model can be added to the scene without blocking due to shader compilation
-
-    //   await this.renderer.compileAsync( model, this.camera, this.scene );
-
-    //   this.scene.add( model );
-    // });
-    
+  spawnCar() {
     const car = new Car();
     this.scene.add(car.render());
-    const wheel = new Wheel();
-    const wheelRender = wheel.render();
-
-    this.scene.add(wheelRender);
 
   }
 
